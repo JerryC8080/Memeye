@@ -1,0 +1,18 @@
+{
+  "name": "node-memeye",
+  "version": "1.0.0",
+  "description": "provide a dashboard to you that show memory usage.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "memory"
+  ],
+  "author": "JerryC",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.11.1",
+    "socket.io": "^1.4.5"
+  }
+}

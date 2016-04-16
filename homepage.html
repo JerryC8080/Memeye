@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <h1>hello world</h1>
+</body>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io();
+  socket.on('HeapUsed:addPoint', function(data){
+    console.log(data);
+  });
+
+  socket.on('Global:init', function (data) {
+    console.log(data);
+  })
+</script>
+</html>
