@@ -10,15 +10,15 @@ class HeapUsedListener {
     this.name = listenConfig.names.HEAP_USED;
   }
 
-  listen(handler){
+  listen(handler) {
     this.timer = setInterval(function () {
       let mem = process.memoryUsage();
       handler(mem.rss, mem.heapUsed, mem.heapTotal);
     }, 1000); // TODO support config listening frequency
   }
 
-  stop(){
-    if (this.timer){
+  stop() {
+    if (this.timer) {
       clearInterval(this.timer);
       this.timer = null;
     }
