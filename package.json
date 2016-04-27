@@ -4,7 +4,8 @@
   "description": "provide a dashboard to you that show memory usage.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test/**/*.test.js",
+    "cover": "istanbul cover _mocha -- test/**/*.test.js"
   },
   "keywords": [
     "memory"
@@ -15,5 +16,10 @@
     "chalk": "^1.1.3",
     "lodash": "^4.11.1",
     "socket.io": "^1.4.5"
+  },
+  "devDependencies": {
+    "istanbul": "^0.4.3",
+    "mocha": "^2.4.5",
+    "should": "^8.3.1"
   }
 }

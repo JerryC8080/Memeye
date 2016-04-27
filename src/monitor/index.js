@@ -12,7 +12,7 @@ class Monitor {
       log.error('no sort that named ' +  options.className + ' of class');
       return null;
     } else {
-      return monitorConstructor(options.initParams);
+      return new monitorConstructor(process, options.initParams);
     }
   }
 }

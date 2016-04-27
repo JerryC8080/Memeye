@@ -20,9 +20,9 @@
    * Here is event.js
    */
   var socket = io();
-  // socket.on('HeapUsed:addPoint', function(data){
-  //   console.log(data);
-  // });
+  socket.on('process:change', function(data){
+    console.log(data);
+  });
 
   socket.on('Global:init', function (data) {
     console.log(data);
