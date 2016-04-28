@@ -1,6 +1,5 @@
 'use strict';
 const log = require("./lib/log");
-const config = require("./config");
 const Monitor = require("./monitor");
 const Dashboard = require("./dashboard");
 
@@ -12,7 +11,7 @@ module.exports = function () {
     className: 'Process'
   });
 
-  let systemMonitro = new Monitor({
+  let systemMonitor = new Monitor({
     className: 'System'
   });
 
