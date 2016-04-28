@@ -1,10 +1,7 @@
 'use strict';
 const log = require("../lib/log");
-const http = require('http');
-const fs = require('fs');
 const path = require('path');
-const IO = require("socket.io");
-const homepage = path.resolve(__dirname, '../../homepage.html');
+const cp = require("child_process");
 
 module.exports = {
   start: function (monitors) {
@@ -13,23 +10,18 @@ module.exports = {
       return;
     }
     
-    // create httpserver
-    let server = http.createServer(function (req, res) {
-      // send homepage
-      fs.createReadStream(homepage).pipe(res);
-    });
-
-    let io = IO(server);
-    
+    /**
+     * Fork a worker.
+     * And listenning the monitor event and send it to worker.
+     */
+    let worker = cp.fork(path.join(__dirname, './worker.js'));
     const processMonitor = monitors['process'];
-
-    // linstenning the even that process change.
-    processMonitor.on('change', (data) => {
-      io.emit('process:change', data);
-    });
     
-    server.listen(1339, function () {
-      console.log('dashboard running in : http://localhost:1339');
+    processMonitor.on('change', (data) => {
+      worker.send({
+        type: 'process:change',
+        data: data
+      });
     });
   }
 }
