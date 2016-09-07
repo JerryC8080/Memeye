@@ -15,6 +15,8 @@ module.exports = {
      * And listenning the monitor event and send it to worker.
      */
     let worker = cp.fork(path.join(__dirname, './worker.js'));
+    log.info('Dashboard worker started no error.');
+
     const processMonitor = monitors['process'];
     
     processMonitor.on('change', (data) => {

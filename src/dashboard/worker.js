@@ -22,5 +22,5 @@ charts.loadAll(io);
 process.on('message', charts.messageHandler);
 
 server.listen(1339, function () {
-  log.log('dashboard running in : http://localhost:1339');
+  log.info('Dashboard running in : http://localhost:1339');
 });
