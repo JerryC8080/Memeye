@@ -7,13 +7,9 @@ module.exports = function () {
   // read config from global
   // merge config of default config
   // create monitor
-  let processMonitor = new Monitor({
-    className: 'Process'
-  });
+  let processMonitor = new Monitor('process');
 
-  let systemMonitor = new Monitor({
-    className: 'System'
-  });
+  let systemMonitor = new Monitor('system');
 
   // run monitor
   processMonitor.start();
