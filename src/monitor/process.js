@@ -21,13 +21,11 @@ class Process extends Monitor {
     const mProcess = _this.mProcess;
     
     if (!mProcess) {
-      log.err('Starting a monitor faild, casue attempt to listenning to an nonexistent process.');
-      return ;
+      throw new Error('Starting a monitor faild, casue attempt to listenning to an nonexistent process.');
     }
     
     if (_this.intervalInstance) {
-      log.err('The monitor are listenning a process now, you should stop it at first.');
-      return ;
+      throw new Error('The monitor are listenning a process now, you should stop it at first.');
     }
     
     // Emit `change` event per 1 second.
@@ -44,8 +42,7 @@ class Process extends Monitor {
     const _this = this;
 
     if (!_this.intervalInstance) {
-      log.err('This monitor did not running, make sure you has been started the monitor');
-      return ;
+      throw new Error('This monitor did not running, make sure you has been started the monitor');
     }
 
     clearInterval(_this.intervalInstance);

@@ -4,10 +4,13 @@ const path = require('path');
 const cp = require("child_process");
 
 module.exports = {
+
+  /**
+   * Starting dashboard for monitors
+   */
   start: function (monitors) {
     if (!monitors) {
-      log.err('Starting dashboard faild, monitors params necessary.');
-      return;
+      throw new Error('Starting dashboard faild, monitors params necessary.');
     }
     
     /**
@@ -16,11 +19,12 @@ module.exports = {
      */
     let worker = cp.fork(path.join(__dirname, './worker.js'));
     log.info('Dashboard worker started no error.');
-
-    const processMonitor = monitors['process'];
     
-    processMonitor.on('change', (data) => {
+    // Listeng the change event of process monitor and send data to worker if it's emitted.
+    monitors['process'].on('change', (data) => {
       worker.send({
+        
+        // MONITOR_NAME:ACTION
         type: 'process:change',
         data: data
       });

@@ -69,6 +69,7 @@ function sendOptions() {
 
 function _emitIOEvent(event, data) {
   if (io) {
+    log.debug(`io.emit(${event}, ${data})`);
     io.emit(event, data);
   } else {
     log.error('io is not defined');

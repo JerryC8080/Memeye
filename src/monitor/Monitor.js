@@ -7,15 +7,11 @@ class Monitor extends EventEmitter {
     super();
 
     if(typeof this.start !== 'function') {
-      let err = new Error('The `start` method should be implement.');
-      log.err(err.message);
-      throw err;
+      throw new Error('The `start` method should be implement.');
     }
 
     if(typeof this.stop !== 'function') {
-      let err = new Error('The `stop` method should be implement.');
-      log.err(err.message);
-      throw err;
+      throw new Error('The `stop` method should be implement.');
     }
   }
 }
