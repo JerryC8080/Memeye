@@ -1,24 +1,28 @@
 'use strict';
 const log = require("../lib/log");
-const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const express = require('express');
+const app = express();
+const http = require('http');
 const IO = require("socket.io");
-const homepage = path.resolve(__dirname, '../../homepage.html');
+const publicDir = path.resolve(__dirname, '../../public');
 
-// create httpserver
-let server = http.createServer(function (req, res) {
-  // send homepage
-  fs.createReadStream(homepage).pipe(res);
-});
+// Setup statics
+app.use(express.static(publicDir));
 
+// Create server of app
+let server = http.Server(app);
+
+// Setup io
 let io = IO(server);
 
 // load all charts
 const charts = require("../charts");
 charts.loadAll(io);
 
-// linstenning the even that process change.     
+// Linstenning the even that process change.
+// Then handler by charts.  
 process.on('message', charts.messageHandler);
 
 server.listen(1339, function () {

@@ -1,2 +1,2 @@
 'use strict';
-require('./src/bootstrap.js')();
+module.exports = require('./src/bootstrap.js');
