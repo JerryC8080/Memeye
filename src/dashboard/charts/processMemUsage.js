@@ -1,9 +1,9 @@
 'use strict';
-const log = require("../lib/log");
-const db = require("../db").dbAsync;
+const log = require("../../lib/log");
+const db = require("../../db").dbAsync;
 
 let io;
-const chartsConfig = require("../config/charts").processMemoryUsage;
+const chartsConfig = require("../../config/charts").processMemoryUsage;
 const chartName = chartsConfig.name;
 const options = chartsConfig.options;
 const events = chartsConfig.events;

@@ -6,7 +6,7 @@ module.exports = {
     processMemUsage.load(io);
   },
   messageHandler: function (msg) {
-    if (msg.type === 'process:change') {
+    if (msg.event === 'change' && msg.name === 'process') {
       processMemUsage.addPoint(msg.data.rss, msg.data.heapUsed, msg.data.heapTotal);
     }
   }

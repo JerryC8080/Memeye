@@ -4,7 +4,10 @@ const Monitor = require('./Monitor');
 
 class Process extends Monitor {
   constructor(mProcess, options) {
-    super();
+    super();  
+
+    // TODO Use ES6 Symbol
+    this.name = 'process';
 
     // The process need to monitor, it's likly the current node process.
     this.mProcess = mProcess;

@@ -16,9 +16,6 @@ module.exports = function () {
   // systemMonitor.start();
 
   // run dashboard and set monitor
-  Dashboard.start({
-    'process': processMonitor
-    // 'system': systemMonitor  
-  });
+  Dashboard.start([processMonitor]);
 }
 

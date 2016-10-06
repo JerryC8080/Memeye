@@ -18,7 +18,7 @@ let server = http.Server(app);
 let io = IO(server);
 
 // load all charts
-const charts = require("../charts");
+const charts = require("./charts");
 charts.loadAll(io);
 
 // Linstenning the even that process change.
