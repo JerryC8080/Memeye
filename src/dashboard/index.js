@@ -25,6 +25,7 @@ module.exports = {
     // Listeng the change event of process monitor and send data to worker if it's emitted.
     monitors.forEach((monitor) => {
       EVENTS.forEach((event) => {
+        log.debug(`listening:on:${monitor.name}:${event}`);
         monitor.on(event, (data) => {
           worker.send({
             name: monitor.name,

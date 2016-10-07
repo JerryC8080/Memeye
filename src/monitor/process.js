@@ -34,7 +34,9 @@ class Process extends Monitor {
     // Emit `change` event per 1 second.
     // And the outside should listen this event such as: `processMonitor.on('message', (usage) = {...} )`
     _this.intervalInstance = setInterval(() => {
-      _this.emit('change', mProcess.memoryUsage());
+      let data = mProcess.memoryUsage();
+      log.debug(`process:emit:change:${JSON.stringify(data)}`);
+      _this.emit('change', data);
     }, 1000); // TODO allow configing interval time
   }
   
