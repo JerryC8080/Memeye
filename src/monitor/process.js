@@ -2,7 +2,7 @@
  * @Author: JerryC (huangjerryc@gmail.com)
  * @Date: 2016-10-21 11:20:45
  * @Last Modified by: JerryC
- * @Last Modified time: 2016-10-21 14:27:07
+ * @Last Modified time: 2016-10-21 17:29:48
  * @Description
  */
 
@@ -47,7 +47,7 @@ class Process extends Monitor {
     // And the outside should listen this event such as: `processMonitor.on('message', (usage) = {...} )`
     _this.intervalInstance = setInterval(() => {
       let data = mProcess.memoryUsage();
-      log.debug(`process:emit:change:${JSON.stringify(data)}`);
+      log.debug(`[monitor/Process.js] process:emit:change:${JSON.stringify(data)}`);
       _this.emit(_this.events.CHANGE, data);
     }, 1000); // TODO allow configing interval time
   }

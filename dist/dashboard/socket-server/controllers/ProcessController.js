@@ -14,7 +14,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @Author: JerryC (huangjerryc@gmail.com)
  * @Date: 2016-10-20 18:00:01
  * @Last Modified by: JerryC
- * @Last Modified time: 2016-10-21 15:58:43
+ * @Last Modified time: 2016-10-21 17:29:14
  * @Description
  */
 
@@ -25,12 +25,12 @@ var SignalHandler = {
 };
 
 var SocketHandler = function SocketHandler(socket) {
-  console.log('An Client connected in ProcessController');
+  _log2.default.debug('[ProcessController.js] An Client connected in ProcessController');
   socket.on('message', function (socket) {
-    console.log('ProcessController does not handler message from Client');
+    _log2.default.debug('[ProcessController.js] ProcessController does not handler message from Client');
   });
   socket.on('close', function (socket) {
-    console.log('An Client disconnect in ProcessController');
+    _log2.default.debug('[ProcessController.js] An Client disconnect in ProcessController');
   });
 
   socket.emit('message', 'Wellcome to ProcessController');
@@ -47,8 +47,8 @@ function main(namespace) {
   namespace.on('connection', SocketHandler);
 
   // listen TickTockService, and send data to all client.
-  ProcessService.on('message', function (data) {
-    _log2.default.debug('Message from ProcessService: ' + _util2.default.inspect(data));
+  ProcessService.on('change', function (data) {
+    _log2.default.debug('[ProcessController.js] Message from ProcessService: ' + _util2.default.inspect(data));
     namespace.send(data);
   });
 }

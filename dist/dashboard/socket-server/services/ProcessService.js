@@ -14,7 +14,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @Author: JerryC (huangjerryc@gmail.com)
  * @Date: 2016-10-21 15:00:39
  * @Last Modified by: JerryC
- * @Last Modified time: 2016-10-21 15:57:12
+ * @Last Modified time: 2016-10-21 17:25:28
  * @Description
  */
 
@@ -23,10 +23,7 @@ var Observer = global.app.Observer;
 
 
 Observer.on('process:change', function (data) {
-  console.log('Message from Observer:process:change \n ' + _util2.default.inspect(data));
-
   // Here can handler and modify data.
-
   ProcessService.emit('change', data);
 });
 

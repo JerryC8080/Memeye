@@ -34,7 +34,7 @@ function addMonitor(monitor, worker) {
 
   Object.keys(events).forEach(function (key) {
     var event = events[key];
-    _log2.default.debug('listening:on:' + monitor.name + ':' + event);
+    _log2.default.debug('[' + bootstrap.js + '] listening:on:' + monitor.name + ':' + event);
 
     // Handle all event of monitor and send it to worker.
     monitor.on(event, function (data) {
@@ -49,7 +49,7 @@ function addMonitor(monitor, worker) {
    * @Author: JerryC (huangjerryc@gmail.com)
    * @Date: 2016-10-21 11:37:42
    * @Last Modified by: JerryC
-   * @Last Modified time: 2016-10-21 16:48:19
+   * @Last Modified time: 2016-10-21 17:28:50
    * @Description
    */
 
@@ -66,7 +66,7 @@ function bootstrap(options) {
       });
 
       // fork worker    
-      _log2.default.debug('Strating worker');
+      _log2.default.debug('[bootstrap.js] Strating worker');
       var worker = _cluster2.default.fork();
 
       // Listeng the change event of process monitor, and send data to worker if it's emitted.
@@ -76,7 +76,7 @@ function bootstrap(options) {
     })();
   } else if (_cluster2.default.isWorker) {
     // start dashboard
-    _log2.default.debug('Started worker ... ' + _cluster2.default.worker.id);
+    _log2.default.debug('[bootstrap.js] Started worker ... ' + _cluster2.default.worker.id);
     (0, _dashboard2.default)();
   }
 }
