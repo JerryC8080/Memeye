@@ -1,39 +1,15 @@
-'use strict';
-const log = require("../lib/log");
-const path = require('path');
-const cp = require("child_process");
-const _ = require('lodash');
-const EVENTS = ['change'];
+/*
+ * @Author: JerryC (huangjerryc@gmail.com)
+ * @Date: 2016-10-21 11:38:48
+ * @Last Modified by: JerryC
+ * @Last Modified time: 2016-10-21 16:47:34
+ * @Description
+ */
 
-module.exports = {
+import HttpServer from './http-server';
+import SocketServer from './socket-server';
 
-  /**
-   * Starting dashboard for monitors
-   */
-  start: function (monitors) {
-    if (_.isEmpty(monitors)) {
-      throw new Error('Starting dashboard faild, monitors params necessary.');
-    }
-
-    /**
-     * Fork a worker.
-     * And listenning the monitor event and send it to worker.
-     */
-    let worker = cp.fork(path.join(__dirname, './worker.js'));
-    log.info('Dashboard worker started no error.');
-
-    // Listeng the change event of process monitor and send data to worker if it's emitted.
-    monitors.forEach((monitor) => {
-      EVENTS.forEach((event) => {
-        log.debug(`listening:on:${monitor.name}:${event}`);
-        monitor.on(event, (data) => {
-          worker.send({
-            name: monitor.name,
-            event: event,
-            data: data
-          });
-        });
-      })
-    });
-  }
+export default function start() {
+  HttpServer();
+  SocketServer();
 }

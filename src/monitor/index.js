@@ -1,31 +1,25 @@
-'use strict';
+/*
+ * @Author: JerryC (huangjerryc@gmail.com)
+ * @Date: 2016-10-21 11:26:27
+ * @Last Modified by: JerryC
+ * @Last Modified time: 2016-10-21 11:33:20
+ * @Description
+ * 
+ * How to use this module
+ * 
+ * import {Process, System} from 'monitor';
+ * const ProcessMonitor = new Process(process, options);
+ * const SystemMonitor = new System(process, options);
+ * 
+ * ProcessMonitor.start()
+ * ProcessMonitor.on('change', () => { // do logic });
+ * 
+ */
 
-const _ = require('lodash');
-const log = require('../lib/log');
-const monitorClass = {
-  'process': require("./Process"),
-  'system': require("./System")
+import Process from './Process';
+import System from './System';
+
+export {
+  Process,
+  System,
 }
-
-// TODO 
-// Provide defaultConfig for Monitor
-// Or may be different sort of monitor has different default config.
-const defaultConfig = {};
-
-class Monitor {
-  constructor(name, options){
-    // Params Check
-    if (!name || typeof name !== 'string') {
-      throw new Error('The first param must a string of monitor class name.');
-    }
-
-    let monitorConstructor = monitorClass[name.toLowerCase()];
-    if (!monitorConstructor) {
-      throw new Error(`No sort that named ${name} of class`);
-    } else {
-      return new monitorConstructor(process, _.defaults(defaultConfig, options));
-    }
-  }
-}
-
-module.exports = Monitor;

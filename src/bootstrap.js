@@ -1,21 +1,61 @@
-'use strict';
-const log = require("./lib/log");
-const Monitor = require("./monitor");
-const Dashboard = require("./dashboard");
+/*
+ * @Author: JerryC (huangjerryc@gmail.com)
+ * @Date: 2016-10-21 11:37:42
+ * @Last Modified by: JerryC
+ * @Last Modified time: 2016-10-21 16:48:19
+ * @Description
+ */
 
-module.exports = function () {
-  // read config from global
-  // merge config of default config
-  // create monitor
-  let processMonitor = new Monitor('process');
+import cluster from 'cluster';
+import _ from 'lodash';
+import log from './lib/log';
+import { Process } from './monitor';
+import Dashboard from './dashboard';
 
-  let systemMonitor = new Monitor('system');
+function addMonitor(monitor, worker) {
+  let events = monitor.events;
 
-  // run monitor
-  processMonitor.start();
-  // systemMonitor.start();
+  if (_.isEmpty(events)) {
+    return log.error(`${monitor.name} Monitor no events`);
+  }
 
-  // run dashboard and set monitor
-  Dashboard.start([processMonitor]);
+  Object.keys(events).forEach((key) => {
+    let event = events[key];
+    log.debug(`listening:on:${monitor.name}:${event}`);
+
+    // Handle all event of monitor and send it to worker.
+    monitor.on(event, (data) => {
+      worker.send({
+        name: monitor.name,
+        event: event,
+        data: data,
+      });
+    });
+  });
+}
+
+export default function bootstrap(options) {
+
+  if (cluster.isMaster) {
+
+    let monitors = [
+      new Process(process, options),
+    ];
+
+    // start monitor
+    monitors.forEach((monitor) => monitor.start());
+
+    // fork worker    
+    log.debug('Strating worker');
+    let worker = cluster.fork();
+
+    // Listeng the change event of process monitor, and send data to worker if it's emitted.
+    monitors.forEach((monitor) => { addMonitor(monitor, worker) });
+
+  } else if (cluster.isWorker) {
+    // start dashboard
+    log.debug(`Started worker ... ${cluster.worker.id}`);
+    Dashboard();
+  }
 }
 

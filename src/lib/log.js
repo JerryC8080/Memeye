@@ -1,6 +1,14 @@
-const chalk = require('chalk');
+/*
+ * @Author: JerryC (huangjerryc@gmail.com)
+ * @Date: 2016-10-21 11:34:12
+ * @Last Modified by:   JerryC
+ * @Last Modified time: 2016-10-21 11:34:12
+ * @Description
+ */
 
-module.exports = {
+import chalk from 'chalk';
+
+export default {
     err: (token) => {
         console.log(chalk.styles.red.open + token + chalk.styles.red.close);
     },

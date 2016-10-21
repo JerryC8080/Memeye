@@ -1,6 +1,13 @@
-'use strict';
-const log = require("../lib/log");
-const Monitor = require('./Monitor');
+/*
+ * @Author: JerryC (huangjerryc@gmail.com)
+ * @Date: 2016-10-21 11:20:45
+ * @Last Modified by: JerryC
+ * @Last Modified time: 2016-10-21 14:27:07
+ * @Description
+ */
+
+import log from '../lib/log';
+import Monitor from './Monitor';
 
 class Process extends Monitor {
   constructor(mProcess, options) {
@@ -14,6 +21,11 @@ class Process extends Monitor {
 
     // Interval Instance of `setInterval` method. It is use to stop moniting.
     this.intervalInstance = null;
+
+    // Events the Process monitor provider. 
+    this.events = {
+      CHANGE: 'change',
+    };
   }
   
   /**
@@ -36,7 +48,7 @@ class Process extends Monitor {
     _this.intervalInstance = setInterval(() => {
       let data = mProcess.memoryUsage();
       log.debug(`process:emit:change:${JSON.stringify(data)}`);
-      _this.emit('change', data);
+      _this.emit(_this.events.CHANGE, data);
     }, 1000); // TODO allow configing interval time
   }
   
@@ -60,4 +72,4 @@ class Process extends Monitor {
   }
 }
 
-module.exports = Process;
+export default Process;

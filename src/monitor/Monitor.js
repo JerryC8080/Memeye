@@ -1,6 +1,7 @@
 'use strict';
-const log = require("../lib/log");
-const EventEmitter = require('events');
+
+import log from '../lib/log';
+import EventEmitter from 'events';
 
 class Monitor extends EventEmitter {
   constructor() {
@@ -16,4 +17,4 @@ class Monitor extends EventEmitter {
   }
 }
 
-module.exports = Monitor;
+export default Monitor;
