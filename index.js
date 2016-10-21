@@ -1,2 +1,4 @@
 'use strict';
-module.exports = require('./src/bootstrap.js');
+require('babel-polyfill');
+
+module.exports = require('./dist/bootstrap.js').default;
