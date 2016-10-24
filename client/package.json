@@ -1,9 +1,27 @@
 {
   "name": "node-memeye-client",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "main": "index.js",
+  "git": "https://github.com/JerryC8080/node-memeye.git",
+  "keywords": [
+    "memory"
+  ],
+  "scripts": {
+    "server": "node_modules/.bin/webpack-dev-server"
+  },
+  "author": "JerryC8080 (huangjerryc@gmail.com)",
+  "license": "MIT",
   "devDependencies": {
-    "grunt": "^0.4.5",
-    "grunt-http-server": "^1.16.0",
-    "install": "^0.6.1"
+    "babel-core": "^6.17.0",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.16.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "css-loader": "^0.25.0",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.16.2"
+  },
+  "dependencies": {
+    "chart.js": "^2.3.0"
   }
 }

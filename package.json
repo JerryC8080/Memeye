@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "provide a dashboard to you that show memory usage.",
   "main": "index.js",
+  "git": "https://github.com/JerryC8080/node-memeye.git",
   "scripts": {
     "test": "mocha test/**/*.test.js",
     "cover": "istanbul cover _mocha -- test/**/*.test.js",
@@ -12,7 +13,7 @@
   "keywords": [
     "memory"
   ],
-  "author": "JerryC",
+  "author": "JerryC8080 (huangjerryc@gmail.com)",
   "license": "MIT",
   "dependencies": {
     "bluebird": "^3.3.5",
