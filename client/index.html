@@ -6,8 +6,13 @@
 </head>
 
 <body>
-	<canvas id="myChart" width="200" height="200"></canvas>
+	<div class="chart">
+		<button type="button" onclick="window.memoryChart.changeUnit('second')">Second</button>
+		<button type="button" onclick="window.memoryChart.changeUnit('minute')">Minute</button>
+		<canvas id="memory"></canvas>
+	</div>
 </body>
 <script src="bundle.js"></script>
+<!--<script src="./dist/bundle.js"></script>-->
 
 </html>
