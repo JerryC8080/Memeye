@@ -2,7 +2,7 @@
  * @Author: JerryC (huangjerryc@gmail.com)
  * @Date: 2016-10-20 22:38:24
  * @Last Modified by: JerryC
- * @Last Modified time: 2016-10-21 15:56:40
+ * @Last Modified time: 2016-10-25 16:45:05
  * @Description
  */
 
@@ -12,6 +12,7 @@ import Promise from 'bluebird';
 import path from 'path';
 import EventEmitter from 'events';
 
+const PORT = 1339;
 const fsAsync = Promise.promisifyAll(fs);
 
 async function Observer() {
@@ -39,7 +40,7 @@ async function loadFiles(dir) {
 
 async function loadSocket() {
   // create io server, listen on ws://localhost:8080/  
-  const io = SocketIO(8080);
+  const io = SocketIO(PORT);
   global.app.socket = io;
   return global.app;
 }
