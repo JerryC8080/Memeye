@@ -61,7 +61,7 @@
 	 * @Author: JerryC (huangjerryc@gmail.com)
 	 * @Date: 2016-10-24 15:09:42
 	 * @Last Modified by: JerryC
-	 * @Last Modified time: 2016-10-25 16:41:52
+	 * @Last Modified time: 2016-10-25 16:58:59
 	 * @Description
 	 */
 
@@ -91,23 +91,24 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var SERVER_HOST = 'ws://localhost:8080'; /*
+	var SERVER_HOST = 'ws://localhost:1339'; /*
 	                                          * @Author: JerryC (huangjerryc@gmail.com)
 	                                          * @Date: 2016-10-25 16:36:55
 	                                          * @Last Modified by: JerryC
-	                                          * @Last Modified time: 2016-10-25 16:42:13
+	                                          * @Last Modified time: 2016-10-25 18:03:09
 	                                          * @Description
 	                                          */
 
-	var Controllers = {};
+	var controllers = {};
 
 	function init() {
-	  Controllers.Process = _socket2.default.connect(SERVER_HOST + '/api/process');
-	  Controllers.Process.on('message', console.log);
+	  controllers.Process = _socket2.default.connect(SERVER_HOST + '/api/process');
+	  controllers.Process.on('message', console.log);
 	}
 
 	exports.default = {
-	  init: init
+	  init: init,
+	  controllers: controllers
 	};
 
 /***/ },
@@ -7749,7 +7750,7 @@
 
 	var _chart2 = _interopRequireDefault(_chart);
 
-	var _socket = __webpack_require__(2);
+	var _socket = __webpack_require__(1);
 
 	var _socket2 = _interopRequireDefault(_socket);
 
@@ -7759,7 +7760,7 @@
 	 * @Author: JerryC (huangjerryc@gmail.com)
 	 * @Date: 2016-10-25 15:51:22
 	 * @Last Modified by: JerryC
-	 * @Last Modified time: 2016-10-25 16:36:18
+	 * @Last Modified time: 2016-10-25 18:05:35
 	 * @Description
 	 */
 
@@ -7784,6 +7785,24 @@
 	  }, 500);
 	}
 
+	function listenSocket(controller) {
+	  controller.on('message', function (data) {
+	    var rss = data.rss;
+	    var heapTotal = data.heapTotal;
+	    var heapUsed = data.heapUsed;
+
+	    var heapUsedPoint = { x: Date.now(), y: heapUsed / 1024 };
+	    var heapTotalPoint = { x: Date.now(), y: heapTotal / 1024 };
+	    var rssPoint = { x: Date.now(), y: rss / 1024 };
+
+	    chart.data.datasets[0].data.push(heapUsedPoint);
+	    chart.data.datasets[1].data.push(heapTotalPoint);
+	    chart.data.datasets[2].data.push(rssPoint);
+
+	    chart.update();
+	  });
+	}
+
 	function render(ctx) {
 
 	  if (!ctx) return console.error('Can not found #memory');
@@ -7792,11 +7811,26 @@
 	    type: 'line',
 	    data: {
 	      datasets: [{
-	        label: 'Memory',
+	        label: 'heapUsed',
 	        pointStyle: 'dash',
-	        spanGaps: true,
 	        data: [],
-	        backgroundColor: ['rgba(255, 99, 132, 0.2)']
+	        fill: false,
+	        backgroundColor: 'rgba(0, 255, 0, 0.4)',
+	        borderColor: 'rgba(0, 255, 0, 0.4)'
+	      }, {
+	        label: 'heapTotal',
+	        pointStyle: 'dash',
+	        data: [],
+	        fill: false,
+	        backgroundColor: 'rgba(255, 0, 0, 0.4)',
+	        borderColor: 'rgba(255, 0, 0, 0.4)'
+	      }, {
+	        label: 'rss',
+	        pointStyle: 'dash',
+	        data: [],
+	        fill: false,
+	        borderColor: 'rgba(0, 0, 255, 0.4)',
+	        backgroundColor: 'rgba(0, 0, 255, 0.4)'
 	      }]
 	    },
 	    options: {
@@ -7821,7 +7855,8 @@
 	    }
 	  });
 
-	  testPoint();
+	  // testPoint();
+	  listenSocket(_socket2.default.controllers.Process);
 
 	  return chart;
 	}

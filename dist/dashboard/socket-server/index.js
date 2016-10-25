@@ -77,7 +77,7 @@ var loadSocket = function () {
         switch (_context3.prev = _context3.next) {
           case 0:
             // create io server, listen on ws://localhost:8080/  
-            io = (0, _socket2.default)(8080);
+            io = (0, _socket2.default)(PORT);
 
             global.app.socket = io;
             return _context3.abrupt('return', global.app);
@@ -198,10 +198,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   * @Author: JerryC (huangjerryc@gmail.com)
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   * @Date: 2016-10-20 22:38:24
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   * @Last Modified by: JerryC
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  * @Last Modified time: 2016-10-21 15:56:40
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  * @Last Modified time: 2016-10-25 16:45:05
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   * @Description
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   */
 
+var PORT = 1339;
 var fsAsync = _bluebird2.default.promisifyAll(_fs2.default);
 
 exports.default = main;
