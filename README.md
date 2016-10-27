@@ -25,6 +25,7 @@ memeye(options);
 - [ ] Little Fix
   - [ ] memory chart provide hour option
   - [ ] log level, 产品环境下不打印debug信息
+  
 -[ ] eslint, 使用airbnb的风格
 -[ ] 持续集成
   - [ ] 单元测试
