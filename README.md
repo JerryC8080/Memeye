@@ -21,13 +21,13 @@ memeye(options);
 
 # TODO
 ## V0.1.0
-[ ] 可配置项，遵循DRY原则
-[ ] Little Fix
-  1. memory chart provide hour option
-  2. log level, 产品环境下不打印debug信息
-3. eslint, 使用airbnb的风格
-4. 持续集成
-  1. 单元测试
-  2. eslint检测
-  3. 检测与生成覆盖率
-  4. 自动部署和发布
+- [ ] 可配置项，遵循DRY原则
+- [ ] Little Fix
+  - [ ] memory chart provide hour option
+  - [ ] log level, 产品环境下不打印debug信息
+-[] eslint, 使用airbnb的风格
+-[] 持续集成
+  - [] 单元测试
+  - [] eslint检测
+  - [] 检测与生成覆盖率
+  - [] 自动部署和发布
