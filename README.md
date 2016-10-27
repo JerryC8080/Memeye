@@ -21,8 +21,8 @@ memeye(options);
 
 # TODO
 ## V0.1.0
-[ ]. 可配置项，遵循DRY原则
-[ ]. Little Fix
+[ ] 可配置项，遵循DRY原则
+[ ] Little Fix
   1. memory chart provide hour option
   2. log level, 产品环境下不打印debug信息
 3. eslint, 使用airbnb的风格
