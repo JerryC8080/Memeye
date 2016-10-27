@@ -1,6 +1,5 @@
-# Memeye <small>The eye of memory</small>
-
-一个提供可视化数据的内存监控器。
+# Memeye 
+The eye of memory, 一个提供可视化数据的内存监控器。
 
 # 快速上手
 
