@@ -5,6 +5,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = bootstrap;
 
+var _options2 = require('./config/options.js');
+
+var _options3 = _interopRequireDefault(_options2);
+
 var _cluster = require('cluster');
 
 var _cluster2 = _interopRequireDefault(_cluster);
@@ -24,6 +28,14 @@ var _dashboard = require('./dashboard');
 var _dashboard2 = _interopRequireDefault(_dashboard);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/*
+ * @Author: JerryC (huangjerryc@gmail.com)
+ * @Date: 2016-10-21 11:37:42
+ * @Last Modified by: JerryC
+ * @Last Modified time: 2016-10-31 16:52:59
+ * @Description
+ */
 
 function addMonitor(monitor, worker) {
   var events = monitor.events;
@@ -45,20 +57,28 @@ function addMonitor(monitor, worker) {
       });
     });
   });
-} /*
-   * @Author: JerryC (huangjerryc@gmail.com)
-   * @Date: 2016-10-21 11:37:42
-   * @Last Modified by: JerryC
-   * @Last Modified time: 2016-10-21 17:28:50
-   * @Description
+}
+
+function bootstrap() {
+  var opt = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+
+  // Merge user options.
+  var _options = _lodash2.default.merge(_options3.default, opt);
+
+  /**
+   * For memory isolation we will run worker process here.
+   * The master process do:
+   *    1. make monitors running.
+   *    2. forwarding message from monitor to worker process.
+   * The worker process do:
+   *    1. make dashboard running.
+   *    2. dashboard will have a observer that receiver message from master and distribute to suitable controllers.
    */
-
-function bootstrap(options) {
-
   if (_cluster2.default.isMaster) {
     (function () {
 
-      var monitors = [new _monitor.Process(process, options)];
+      var monitors = [new _monitor.Process(process, _options)];
 
       // start monitor
       monitors.forEach(function (monitor) {
@@ -75,8 +95,9 @@ function bootstrap(options) {
       });
     })();
   } else if (_cluster2.default.isWorker) {
+
     // start dashboard
     _log2.default.debug('[bootstrap.js] Started worker ... ' + _cluster2.default.worker.id);
-    (0, _dashboard2.default)();
+    (0, _dashboard2.default)(_options);
   }
 }

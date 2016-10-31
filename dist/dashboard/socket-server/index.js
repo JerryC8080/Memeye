@@ -4,6 +4,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+/**
+ * Observer for master process.
+ * It will listen message from master, and distribute to suitable controllers to handle.  
+ */
 var Observer = function () {
   var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee() {
     var master, Observer;
@@ -14,7 +18,6 @@ var Observer = function () {
             master = process;
             Observer = new _events2.default();
 
-            // To Observer the 
 
             master.on('message', function (message) {
               Observer.emit(message.name + ':' + message.event, message.data);
@@ -36,6 +39,12 @@ var Observer = function () {
     return _ref.apply(this, arguments);
   };
 }();
+
+/**
+ * Load config or controllers or services file.
+ * @param  {String} dir The path that need load.
+ */
+
 
 var loadFiles = function () {
   var _ref2 = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(dir) {
@@ -69,15 +78,21 @@ var loadFiles = function () {
   };
 }();
 
+/**
+ * Load Socket Server. 
+ */
+
+
 var loadSocket = function () {
-  var _ref3 = _asyncToGenerator(regeneratorRuntime.mark(function _callee3() {
+  var _ref3 = _asyncToGenerator(regeneratorRuntime.mark(function _callee3(port) {
     var io;
     return regeneratorRuntime.wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
-            // create io server, listen on ws://localhost:8080/  
-            io = (0, _socket2.default)(PORT);
+
+            // Run io server.
+            io = (0, _socket2.default)(port);
 
             global.app.socket = io;
             return _context3.abrupt('return', global.app);
@@ -90,10 +105,16 @@ var loadSocket = function () {
     }, _callee3, this);
   }));
 
-  return function loadSocket() {
+  return function loadSocket(_x2) {
     return _ref3.apply(this, arguments);
   };
 }();
+
+/**
+ * Load route for every controllers.
+ * @param  {Objcet} app
+ */
+
 
 var loadRoute = function () {
   var _ref4 = _asyncToGenerator(regeneratorRuntime.mark(function _callee4(app) {
@@ -122,13 +143,18 @@ var loadRoute = function () {
     }, _callee4, this);
   }));
 
-  return function loadRoute(_x2) {
+  return function loadRoute(_x3) {
     return _ref4.apply(this, arguments);
   };
 }();
 
+/**
+ * The main method to export.
+ */
+
+
 var main = function () {
-  var _ref5 = _asyncToGenerator(regeneratorRuntime.mark(function _callee5() {
+  var _ref5 = _asyncToGenerator(regeneratorRuntime.mark(function _callee5(options) {
     return regeneratorRuntime.wrap(function _callee5$(_context5) {
       while (1) {
         switch (_context5.prev = _context5.next) {
@@ -153,7 +179,7 @@ var main = function () {
 
           case 9:
             _context5.next = 11;
-            return loadSocket();
+            return loadSocket(options.dashboard.socketServer.port);
 
           case 11:
             _context5.next = 13;
@@ -167,7 +193,7 @@ var main = function () {
     }, _callee5, this);
   }));
 
-  return function main() {
+  return function main(_x4) {
     return _ref5.apply(this, arguments);
   };
 }();
@@ -198,11 +224,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   * @Author: JerryC (huangjerryc@gmail.com)
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   * @Date: 2016-10-20 22:38:24
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   * @Last Modified by: JerryC
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  * @Last Modified time: 2016-10-25 16:45:05
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  * @Last Modified time: 2016-10-31 16:53:39
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   * @Description
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   */
 
-var PORT = 1339;
-var fsAsync = _bluebird2.default.promisifyAll(_fs2.default);
-
-exports.default = main;
+var fsAsync = _bluebird2.default.promisifyAll(_fs2.default);exports.default = main;

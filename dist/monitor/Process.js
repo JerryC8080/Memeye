@@ -24,7 +24,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 * @Author: JerryC (huangjerryc@gmail.com)
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 * @Date: 2016-10-21 11:20:45
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 * @Last Modified by: JerryC
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @Last Modified time: 2016-10-21 17:29:48
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @Last Modified time: 2016-10-31 16:51:35
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 * @Description
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 */
 
@@ -34,9 +34,12 @@ var Process = function (_Monitor) {
   function Process(mProcess, options) {
     _classCallCheck(this, Process);
 
-    // TODO Use ES6 Symbol
+    // Options from user.
     var _this2 = _possibleConstructorReturn(this, (Process.__proto__ || Object.getPrototypeOf(Process)).call(this));
 
+    _this2.options = options;
+
+    // TODO Use ES6 Symbol
     _this2.name = 'process';
 
     // The process need to monitor, it's likly the current node process.
@@ -62,6 +65,7 @@ var Process = function (_Monitor) {
     value: function start() {
       var _this = this;
       var mProcess = _this.mProcess;
+      var frequency = _this.options.monitor.process.frequency || _this.options.monitor.frequency || 1000;
 
       if (!mProcess) {
         throw new Error('Starting a monitor faild, casue attempt to listenning to an nonexistent process.');
@@ -77,7 +81,7 @@ var Process = function (_Monitor) {
         var data = mProcess.memoryUsage();
         _log2.default.debug('[monitor/Process.js] process:emit:change:' + JSON.stringify(data));
         _this.emit(_this.events.CHANGE, data);
-      }, 1000); // TODO allow configing interval time
+      }, frequency);
     }
 
     /**
