@@ -21,8 +21,8 @@ memeye(options);
 # TODO
 ## V0.1.0
 - [ ] 可配置项，遵循DRY原则
-  - [ ] port of socketServer and httpServer
-  - [ ] refresh frequency of process and system monitor
+  - [x] port of socketServer and httpServer
+  - [x] refresh frequency of process and system monitor
   - [ ] log level
 - [ ] Little Fix
   - [ ] memory chart provide hour option
