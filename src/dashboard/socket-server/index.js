@@ -2,7 +2,7 @@
  * @Author: JerryC (huangjerryc@gmail.com)
  * @Date: 2016-10-20 22:38:24
  * @Last Modified by: JerryC
- * @Last Modified time: 2016-10-25 16:45:05
+ * @Last Modified time: 2016-10-31 16:53:39
  * @Description
  */
 
@@ -12,14 +12,16 @@ import Promise from 'bluebird';
 import path from 'path';
 import EventEmitter from 'events';
 
-const PORT = 1339;
 const fsAsync = Promise.promisifyAll(fs);
 
+/**
+ * Observer for master process.
+ * It will listen message from master, and distribute to suitable controllers to handle.  
+ */
 async function Observer() {
   const master = process;
   const Observer = new EventEmitter();
-
-  // To Observer the 
+ 
   master.on('message', (message) => {
     Observer.emit(`${message.name}:${message.event}`, message.data);
   });
@@ -29,6 +31,10 @@ async function Observer() {
   return Observer;
 }
 
+/**
+ * Load config or controllers or services file.
+ * @param  {String} dir The path that need load.
+ */
 async function loadFiles(dir) {
   let files = await fsAsync.readdirAsync(path.join(__dirname, `./${dir}`));
   files.forEach((file) => {
@@ -38,13 +44,21 @@ async function loadFiles(dir) {
   return global.app;
 }
 
-async function loadSocket() {
-  // create io server, listen on ws://localhost:8080/  
-  const io = SocketIO(PORT);
+/**
+ * Load Socket Server. 
+ */
+async function loadSocket(port) {
+
+  // Run io server.
+  const io = SocketIO(port);
   global.app.socket = io;
   return global.app;
 }
 
+/**
+ * Load route for every controllers.
+ * @param  {Objcet} app
+ */
 async function loadRoute(app) {
   const routes = global.app.config.routes;
   const io = global.app.socket;
@@ -58,7 +72,10 @@ async function loadRoute(app) {
   });
 }
 
-async function main() {
+/**
+ * The main method to export.
+ */
+async function main(options) {
   if (!global.app) global.app = { services: {}, controllers: {}, config: {} };
 
   // Run Observer
@@ -74,7 +91,7 @@ async function main() {
   await loadFiles('config');
 
   // loadSocket server
-  await loadSocket();
+  await loadSocket(options.dashboard.socketServer.port);
 
   // loadRoute
   await loadRoute(global.app);

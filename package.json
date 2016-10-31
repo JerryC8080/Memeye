@@ -21,20 +21,21 @@
   "author": "JerryC (huangjerryc@gmail.com)",
   "license": "MIT",
   "dependencies": {
+    "babel-polyfill": "^6.16.0",
     "bluebird": "^3.3.5",
     "chalk": "^1.1.3",
+    "cors": "^2.8.1",
     "express": "^4.14.0",
     "lodash": "^4.11.1",
     "nedb": "^1.8.0",
-    "socket.io": "^1.5.0",
-    "babel-polyfill": "^6.16.0"
+    "socket.io": "^1.5.0"
   },
   "devDependencies": {
-    "istanbul": "^0.4.3",
-    "mocha": "^2.4.5",
-    "should": "^8.3.1",
     "babel-cli": "^6.16.0",
     "babel-preset-es2015": "^6.16.0",
-    "babel-preset-stage-0": "^6.16.0"
+    "babel-preset-stage-0": "^6.16.0",
+    "istanbul": "^0.4.3",
+    "mocha": "^2.4.5",
+    "should": "^8.3.1"
   }
 }

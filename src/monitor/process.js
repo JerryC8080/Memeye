@@ -2,7 +2,7 @@
  * @Author: JerryC (huangjerryc@gmail.com)
  * @Date: 2016-10-21 11:20:45
  * @Last Modified by: JerryC
- * @Last Modified time: 2016-10-21 17:29:48
+ * @Last Modified time: 2016-10-31 16:51:35
  * @Description
  */
 
@@ -12,6 +12,9 @@ import Monitor from './Monitor';
 class Process extends Monitor {
   constructor(mProcess, options) {
     super();  
+
+    // Options from user.
+    this.options = options;
 
     // TODO Use ES6 Symbol
     this.name = 'process';
@@ -34,6 +37,7 @@ class Process extends Monitor {
   start() {
     const _this = this;
     const mProcess = _this.mProcess;
+    const frequency = _this.options.monitor.process.frequency || _this.options.monitor.frequency || 1000;
     
     if (!mProcess) {
       throw new Error('Starting a monitor faild, casue attempt to listenning to an nonexistent process.');
@@ -49,7 +53,7 @@ class Process extends Monitor {
       let data = mProcess.memoryUsage();
       log.debug(`[monitor/Process.js] process:emit:change:${JSON.stringify(data)}`);
       _this.emit(_this.events.CHANGE, data);
-    }, 1000); // TODO allow configing interval time
+    }, frequency);
   }
   
   /**

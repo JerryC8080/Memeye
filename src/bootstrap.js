@@ -2,10 +2,11 @@
  * @Author: JerryC (huangjerryc@gmail.com)
  * @Date: 2016-10-21 11:37:42
  * @Last Modified by: JerryC
- * @Last Modified time: 2016-10-21 17:28:50
+ * @Last Modified time: 2016-10-31 16:52:59
  * @Description
  */
 
+import options from './config/options.js';
 import cluster from 'cluster';
 import _ from 'lodash';
 import log from './lib/log';
@@ -34,12 +35,24 @@ function addMonitor(monitor, worker) {
   });
 }
 
-export default function bootstrap(options) {
+export default function bootstrap(opt = {}) {
 
+  // Merge user options.
+  let _options = _.merge(options, opt);
+
+  /**
+   * For memory isolation we will run worker process here.
+   * The master process do:
+   *    1. make monitors running.
+   *    2. forwarding message from monitor to worker process.
+   * The worker process do:
+   *    1. make dashboard running.
+   *    2. dashboard will have a observer that receiver message from master and distribute to suitable controllers.
+   */
   if (cluster.isMaster) {
 
     let monitors = [
-      new Process(process, options),
+      new Process(process, _options),
     ];
 
     // start monitor
@@ -53,9 +66,10 @@ export default function bootstrap(options) {
     monitors.forEach((monitor) => { addMonitor(monitor, worker) });
 
   } else if (cluster.isWorker) {
+    
     // start dashboard
     log.debug(`[bootstrap.js] Started worker ... ${cluster.worker.id}`);
-    Dashboard();
+    Dashboard(_options);
   }
 }
 
