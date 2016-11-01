@@ -66,7 +66,7 @@ export default function bootstrap(opt = {}) {
     let worker = cluster.fork();
 
     // Listeng the change event of process monitor, and send data to worker if it's emitted.
-    monitors.forEach((monitor) => { addMonitor(monitor, worker) });
+    monitors.forEach((monitor) => { addMonitor(monitor, worker); });
 
   } else if (cluster.isWorker) {
     

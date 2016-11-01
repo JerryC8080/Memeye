@@ -11,6 +11,6 @@
  */
 const routes = {
   '/api/process': 'ProcessController',
-}
+};
 
 module.exports = routes;

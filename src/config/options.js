@@ -38,5 +38,5 @@ export default {
 
   db: {
     storePath: path.join(__dirname, '../temp'),
-  }
-}
+  },
+};

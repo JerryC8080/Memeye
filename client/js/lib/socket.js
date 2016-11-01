@@ -8,7 +8,7 @@
 
 import SocketClient from 'socket.io-client';
 
-const controllers = {}
+const controllers = {};
 
 function init() {
   const SERVER_PORT = window.options.dashboard.socketServer.port;
@@ -20,4 +20,4 @@ function init() {
 export default {
   init,
   controllers,
-}
+};

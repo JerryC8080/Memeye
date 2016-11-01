@@ -12,8 +12,8 @@ import log from '../../../lib/log';
 const SignalHandler = {
   'name': function name() {
     // ... do logic
-  }
-}
+  },
+};
 
 const SocketHandler = function (socket) {
   log.debug(`[ProcessController.js] An Client connected in ProcessController`);
@@ -23,8 +23,8 @@ const SocketHandler = function (socket) {
   socket.emit('message', 'Wellcome to ProcessController');
 
   // Register signal handler
-  Object.keys(SignalHandler).forEach((key) => { socket.on(key, SignalHandler[key]) });
-}
+  Object.keys(SignalHandler).forEach((key) => { socket.on(key, SignalHandler[key]); });
+};
 
 function main(namespace) {
 

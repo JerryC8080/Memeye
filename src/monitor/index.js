@@ -22,4 +22,4 @@ import System from './System';
 export {
   Process,
   System,
-}
+};

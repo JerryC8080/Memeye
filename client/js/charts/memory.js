@@ -27,7 +27,7 @@ function testPoint() {
 
     chart.data.datasets[0].data.push(point);
     chart.update();
-  }, 500)
+  }, 500);
 }
 
 function listenSocket(controller) {
@@ -76,8 +76,8 @@ function render(ctx) {
           fill: false,
           borderColor: 'rgba(0, 0, 255, 0.4)',
           backgroundColor: 'rgba(0, 0, 255, 0.4)',
-        }
-      ]
+        },
+      ],
     },
     options: {
       scales: {
@@ -88,8 +88,8 @@ function render(ctx) {
             time: {
               unit: 'second',
               unitStepSize: 10,
-            }
-          }
+            },
+          },
         ],
         yAxes: [
           {
@@ -98,11 +98,11 @@ function render(ctx) {
             ticks: {
               suggestedMax: 5000,
               beginAtZero: true,
-            }
-          }
-        ]
-      }
-    }
+            },
+          },
+        ],
+      },
+    },
   });
 
   // testPoint();
@@ -114,4 +114,4 @@ function render(ctx) {
 export default {
   render,
   changeUnit,
-}
+};

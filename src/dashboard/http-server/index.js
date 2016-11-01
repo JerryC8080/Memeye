@@ -23,9 +23,9 @@ export default function main(options) {
   app.use(cors());
 
   // route
-  app.get('/api/options', (req, res) => { res.status(200).json(options) });
+  app.get('/api/options', (req, res) => { res.status(200).json(options); });
 
   app.listen(HTTP_PORT, () => {
     log.info(`Dashboard Server goes on http://localhost:${HTTP_PORT}`);
-  })
+  });
 }

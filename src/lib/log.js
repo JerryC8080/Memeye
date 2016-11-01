@@ -32,5 +32,5 @@ export default {
     err: (token) => log('err', chalk.styles.red.open + token + chalk.styles.red.close),
     warn: (token) => log('warn', chalk.styles.yellow.open + token + chalk.styles.yellow.close),
     debug: (token) => log('debug', chalk.styles.blue.open + token + chalk.styles.blue.close),
-    info: (token) => log('info', chalk.styles.green.open + token + chalk.styles.green.close)
-}
+    info: (token) => log('info', chalk.styles.green.open + token + chalk.styles.green.close),
+};
