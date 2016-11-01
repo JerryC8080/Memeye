@@ -2,7 +2,7 @@
  * @Author: JerryC (huangjerryc@gmail.com)
  * @Date: 2016-10-21 11:37:42
  * @Last Modified by: JerryC
- * @Last Modified time: 2016-10-31 16:52:59
+ * @Last Modified time: 2016-11-01 16:36:26
  * @Description
  */
 
@@ -39,6 +39,9 @@ export default function bootstrap(opt = {}) {
 
   // Merge user options.
   let _options = _.merge(options, opt);
+
+  // Gloable options
+  global.options = _options;
 
   /**
    * For memory isolation we will run worker process here.

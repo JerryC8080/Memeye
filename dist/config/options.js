@@ -35,7 +35,7 @@ exports.default = {
   },
 
   log: {
-    level: 'warn'
+    level: 'info'
   },
 
   db: {
@@ -45,6 +45,6 @@ exports.default = {
     * @Author: JerryC (huangjerryc@gmail.com)
     * @Date: 2016-10-31 16:03:33
     * @Last Modified by: JerryC
-    * @Last Modified time: 2016-10-31 17:45:39
+    * @Last Modified time: 2016-11-01 16:47:25
     * @Description Default options, and these should be configable for user.
     */

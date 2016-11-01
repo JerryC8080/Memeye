@@ -33,7 +33,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @Author: JerryC (huangjerryc@gmail.com)
  * @Date: 2016-10-21 11:37:42
  * @Last Modified by: JerryC
- * @Last Modified time: 2016-10-31 16:52:59
+ * @Last Modified time: 2016-11-01 16:36:26
  * @Description
  */
 
@@ -65,6 +65,9 @@ function bootstrap() {
 
   // Merge user options.
   var _options = _lodash2.default.merge(_options3.default, opt);
+
+  // Gloable options
+  global.options = _options;
 
   /**
    * For memory isolation we will run worker process here.
