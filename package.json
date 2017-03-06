@@ -1,6 +1,6 @@
 {
   "name": "memeye",
-  "version": "0.0.3",
+  "version": "1.0.1",
   "description": "A memory monitor and dashboard for Node.js application on development.",
   "main": "index.js",
   "repository": {
@@ -8,10 +8,7 @@
     "url": "https://github.com/JerryC8080/Memeye.git"
   },
   "scripts": {
-    "test": "mocha test/**/*.test.js",
-    "cover": "istanbul cover _mocha -- test/**/*.test.js",
-    "build": "./node_modules/.bin/babel src -d dist",
-    "build-watch": "./node_modules/.bin/babel src --watch -d dist"
+    "test": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- test/bootstarp.js test/unit/*.test.js"
   },
   "keywords": [
     "memory",
@@ -21,27 +18,12 @@
   "author": "JerryC (huangjerryc@gmail.com)",
   "license": "MIT",
   "dependencies": {
-    "babel-polyfill": "^6.16.0",
-    "bluebird": "^3.3.5",
-    "chalk": "^1.1.3",
-    "cors": "^2.8.1",
-    "express": "^4.14.0",
-    "lodash": "^4.11.1",
-    "nedb": "^1.8.0",
-    "socket.io": "^1.5.0"
+    "colors": "^1.1.2",
+    "socket.io": "^1.7.3"
   },
   "devDependencies": {
-    "babel-cli": "^6.16.0",
-    "babel-preset-es2015": "^6.16.0",
-    "babel-preset-stage-0": "^6.16.0",
-    "babel-eslint": "^6.0.2",
-    "istanbul": "^0.4.3",
-    "mocha": "^2.4.5",
-    "should": "^8.3.1",
-    "eslint": "^2.13.1",
-    "eslint-config-airbnb": "^9.0.1",
-    "eslint-plugin-import": "^1.12.0",
-    "eslint-plugin-jsx-a11y": "^2.0.1",
-    "eslint-plugin-react": "^5.2.2"
+    "mocha": "^3.2.0",
+    "istanbul": "^0.4.5",
+    "should": "^11.2.0"
   }
 }
