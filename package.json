@@ -1,7 +1,7 @@
 {
   "name": "memeye",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "A memory monitor and dashboard for Node.js application on development.",
   "main": "index.js",
   "repository": {
     "type": "git",
