@@ -46,14 +46,7 @@ function getStaticFileStream(url, cb) {
 
 const io = socketio(server);
 
-module.exports = function (port, cb) {
-    server.listen(port, function () {
-        console.log(`Memeye runing on: http://localhost:${port}`);
-        cb(io, server);
-    });
-
-    return {
-        io,
-        server,
-    };
+module.exports = {
+    io,
+    httpServer: server,
 }

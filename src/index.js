@@ -9,10 +9,18 @@ const path = require('path');
 const child_process = require('child_process');
 const Collector = require('./lib/Collector.js');
 const modulePath = path.join(__dirname, './dashboard');
+const logger = require('./lib/Logger.js');
 
-module.exports = function ({ port = 23333 } = {}) {
+module.exports = function ({ port = 23333, log } = {}) {
+    if (log) logger.setLevel(log);
+
+    logger.info('Memeye seting up...... ');
+
     let dashboardProcess = child_process.fork(modulePath, [port]);
     process.on('exit', () => dashboardProcess.kill());
+
+    logger.info('Initializing Collector...... ');
+
     let collector = new Collector(dashboardProcess);
     collector.start();
 }

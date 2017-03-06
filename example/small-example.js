@@ -1,3 +1,3 @@
 const memeye = require('../');
 
-memeye();
+memeye({log: 'debug'});

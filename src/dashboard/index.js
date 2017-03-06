@@ -7,6 +7,7 @@
 
 const Indicator = require('../lib/Indicators');
 const server = require('./server');
+const logger = require('../lib/Logger.js');
 
 const port = process.argv[2] || 23333;
 let indicator = new Indicator({
@@ -32,7 +33,6 @@ let indicator = new Indicator({
 
 // Bind process IPC channel to indicator
 function bindIndicators(indicator) {
-
     // Parent process will send three type of data
     const collectorHandler = {
         'process': function (value) {
@@ -72,9 +72,14 @@ function bindSocket(io, indicator) {
     });
 }
 
-// start http server
-server(port, (io, server) => {
-    bindIndicators(indicator);
-    bindSocket(io, indicator);
+logger.info('Binding Indicator with Collector by IPC channel...... ');
+bindIndicators(indicator);
+
+logger.info('Binding Indicator with SocketIO...... ');
+bindSocket(server.io, indicator);
+
+// Run dashboard
+server.httpServer.listen(port, function () {
+    logger.info(`Memeye runing on: http://localhost:${port}`);
 });
 
