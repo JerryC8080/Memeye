@@ -1,0 +1,3 @@
+const memeye = require('../');
+
+memeye();

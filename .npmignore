@@ -1,9 +1,7 @@
-.babelrc
+.DS_Store
 .gitignore
-.idea
 client
 coverage
-node_modules
-src
-src_old
+example
 test
+node_modules

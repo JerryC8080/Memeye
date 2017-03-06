@@ -1,32 +1,27 @@
 {
-  "name": "node-memeye-client",
+  "name": "memeye-client",
+  "description": "A Vue.js project",
   "version": "1.0.0",
-  "main": "index.js",
-  "git": "https://github.com/JerryC8080/node-memeye.git",
-  "keywords": [
-    "memory"
-  ],
+  "author": "JerryC",
+  "private": true,
   "scripts": {
-    "server": "node_modules/.bin/webpack-dev-server",
-    "build": "NODE_ENV=development node_modules/.bin/webpack",
-    "build-prod": "NODE_ENV=production node_modules/.bin/webpack && cp ./dist/* ../public"
-  },
-  "author": "JerryC8080 (huangjerryc@gmail.com)",
-  "license": "MIT",
-  "devDependencies": {
-    "babel-core": "^6.17.0",
-    "babel-loader": "^6.2.5",
-    "babel-preset-es2015": "^6.16.0",
-    "babel-preset-stage-0": "^6.16.0",
-    "css-loader": "^0.25.0",
-    "html-webpack-plugin": "^2.24.0",
-    "style-loader": "^0.13.1",
-    "webpack": "^1.13.2",
-    "webpack-dev-server": "^1.16.2"
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
-    "chart.js": "^2.3.0",
-    "jquery": "^3.1.1",
-    "socket.io-client": "^1.5.1"
+    "vue": "^2.2.1",
+    "vue-chartjs": "^2.4.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.0.0",
+    "babel-loader": "^6.0.0",
+    "babel-preset-latest": "^6.0.0",
+    "cross-env": "^3.0.0",
+    "css-loader": "^0.25.0",
+    "file-loader": "^0.9.0",
+    "vue-loader": "^11.0.0",
+    "vue-template-compiler": "^2.2.1",
+    "webpack": "^2.2.0",
+    "webpack-dev-server": "^2.2.0"
   }
 }
