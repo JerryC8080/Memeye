@@ -1,6 +1,6 @@
 
 <div align="center">
-  <img width="256" heigth="256" src="/assets/memeye.png" alt="memeye logo">
+  <img width="256" heigth="256" src="/assets/memeye-logo.png" alt="memeye logo">
 </div>
 
 [![Build Status](https://travis-ci.org/JerryC8080/Memeye.svg?branch=master)](https://travis-ci.org/JerryC8080/Memeye) 
