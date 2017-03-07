@@ -1,12 +1,16 @@
-# Memeye
 
-[中文版](README_zh.md)
+<div align="center">
+  <img width="256" heigth="256" src="/assets/memeye.png" alt="memeye logo">
+</div>
 
 [![Build Status](https://travis-ci.org/JerryC8080/Memeye.svg?branch=master)](https://travis-ci.org/JerryC8080/Memeye) 
 [![npm version](https://badge.fury.io/js/memeye.svg)](https://badge.fury.io/js/memeye) 
 [![Package Quality](http://npm.packagequality.com/shield/memeye.svg)](http://packagequality.com/#?package=memeye) 
 [![npm](https://img.shields.io/npm/dt/memeye.svg)](https://www.npmjs.com/package/memeye)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/JerryC8080/Memeye/blob/master/LICENSE) 
+
+# Memeye
+[中文版](README_zh.md)
 
 # Introduction
 
@@ -93,7 +97,6 @@ npm test
 # Some feature may be
 - [ ] Mutil process support
 - [ ] Report export
-- [ ] Icon for Memeye
 
 # License
 

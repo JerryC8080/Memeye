@@ -1,10 +1,15 @@
-# Memeye
+<div align="center">
+  <img width="256" heigth="256" src="/assets/memeye.png" alt="memeye logo">
+</div>
 
 [![Build Status](https://travis-ci.org/JerryC8080/Memeye.svg?branch=master)](https://travis-ci.org/JerryC8080/Memeye) 
 [![npm version](https://badge.fury.io/js/memeye.svg)](https://badge.fury.io/js/memeye) 
 [![Package Quality](http://npm.packagequality.com/shield/memeye.svg)](http://packagequality.com/#?package=memeye) 
 [![npm](https://img.shields.io/npm/dt/memeye.svg)](https://www.npmjs.com/package/memeye)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/JerryC8080/Memeye/blob/master/LICENSE) 
+
+# Memeye
+[中文版](README_zh.md)
 
 # 介绍
 Memeye 是一个轻量级的 NodeJS 进程监控工具，它提供 进程内存、V8 堆空间内存、操作系统内存 三大维度的数据可视化展示。
@@ -87,7 +92,6 @@ npm test
 # 在考虑的功能
 - [ ] 支持多进程
 - [ ] 支持导出报告
-- [ ] 给 Memeye 画个 Icon
 
 # 许可
 
