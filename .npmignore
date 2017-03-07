@@ -1,8 +1,0 @@
-.DS_Store
-.gitignore
-.travis.yml
-client
-coverage
-example
-test
-node_modules

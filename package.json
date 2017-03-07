@@ -1,29 +1,27 @@
 {
-  "name": "memeye",
-  "version": "1.0.1",
-  "description": "A memory monitor and dashboard for Node.js application on development.",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/JerryC8080/Memeye.git"
-  },
+  "name": "memeye-client",
+  "description": "A Vue.js project",
+  "version": "1.0.0",
+  "author": "JerryC",
+  "private": true,
   "scripts": {
-    "test": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- test/bootstarp.js test/unit/*.test.js"
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
-  "keywords": [
-    "memory",
-    "monitor",
-    "dashboard"
-  ],
-  "author": "JerryC (huangjerryc@gmail.com)",
-  "license": "MIT",
   "dependencies": {
-    "colors": "^1.1.2",
-    "socket.io": "^1.7.3"
+    "vue": "^2.2.1",
+    "vue-chartjs": "^2.4.1"
   },
   "devDependencies": {
-    "mocha": "^3.2.0",
-    "istanbul": "^0.4.5",
-    "should": "^11.2.0"
+    "babel-core": "^6.0.0",
+    "babel-loader": "^6.0.0",
+    "babel-preset-latest": "^6.0.0",
+    "cross-env": "^3.0.0",
+    "css-loader": "^0.25.0",
+    "file-loader": "^0.9.0",
+    "vue-loader": "^11.0.0",
+    "vue-template-compiler": "^2.2.1",
+    "webpack": "^2.2.0",
+    "webpack-dev-server": "^2.2.0"
   }
 }
