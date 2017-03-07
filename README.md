@@ -33,7 +33,7 @@ Recently there is time, once again turned out to reorganize and revision, add mo
 
 
 # Demo
-[See preview demo]()
+[See preview demo](http://jerryc8080.github.io/Memeye/)
 
 # Compatibility
 - Node v7.x

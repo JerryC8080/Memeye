@@ -27,7 +27,7 @@ Memeye 在宿主进程中，只植入了一个简单的数据收集器，其他�
 最近有时间，再次翻出来，重构改版，增加更多维度的数据展示。    
 
 # Demo
-[See preview demo]()
+[See preview demo](http://jerryc8080.github.io/Memeye/) (也许需要翻墙)
 
 # 兼容性
 - Node v7.x
