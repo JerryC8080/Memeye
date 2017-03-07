@@ -79,7 +79,7 @@ The dashboard , will calling at the child process way. It will create an Indicat
 
 ## The commication between Collector, Indicator and Dashboard
 
-![WechatIMG23.jpeg](quiver-image-url/61A039DF1C61FEDE7DA26ED0E860C5D1.jpg)
+![commication.jpeg](http://obxj5yn80.bkt.clouddn.com/61A039DF1C61FEDE7DA26ED0E860C5D1.jpg)
 
 # Test
 Simply run:
