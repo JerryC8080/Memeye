@@ -11,7 +11,7 @@ const Collector = require('./lib/Collector.js');
 const modulePath = path.join(__dirname, './dashboard');
 const logger = require('./lib/Logger.js');
 
-module.exports = function ({ port = 23333, log } = {}) {
+module.exports = function ({ port = 23333, log, frequency } = {}) {
     if (log) logger.setLevel(log);
 
     logger.info('Memeye seting up...... ');
@@ -21,6 +21,6 @@ module.exports = function ({ port = 23333, log } = {}) {
 
     logger.info('Initializing Collector...... ');
 
-    let collector = new Collector(dashboardProcess);
+    let collector = new Collector(dashboardProcess, { frequency });
     collector.start();
 }
