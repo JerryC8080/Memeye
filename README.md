@@ -61,7 +61,7 @@ memeye();
 Then open your browser and load address: 
 
 ```
-http://localhost:23333  //23333 port by defaul.
+http://localhost:23333  //23333 port by default.
 ```
 
 That's it! No more options, no more config, just so easy.
