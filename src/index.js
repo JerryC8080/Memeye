@@ -11,16 +11,33 @@ const Collector = require('./lib/Collector.js');
 const modulePath = path.join(__dirname, './dashboard');
 const logger = require('./lib/Logger.js');
 
-module.exports = function ({ port = 23333, log } = {}) {
+module.exports = function ({ port = 23333, log, frequency } = {}) {
     if (log) logger.setLevel(log);
 
     logger.info('Memeye seting up...... ');
 
     let dashboardProcess = child_process.fork(modulePath, [port]);
-    process.on('exit', () => dashboardProcess.kill());
 
     logger.info('Initializing Collector...... ');
 
-    let collector = new Collector(dashboardProcess);
+    let collector = new Collector(dashboardProcess, { frequency });
     collector.start();
+
+    // If Parent process exit, kill child process.
+    process.on('exit', () => dashboardProcess.kill());
+
+    // Handle child process's error
+    dashboardProcess.once('error', (err) => {
+
+        // Kill child process once it occur error.
+        logger.error(`DashboardProcess occur an error: ${err.toString()}`);
+        logger.error(`DashboardProcess should be stopping......`);
+        dashboardProcess.kill();
+    }).once('exit', (code, signal) => {
+
+        // Stop collector while child process exit.
+        logger.error(`DashboardProcess exited by code: ${code}`);
+        logger.error(`Collector has been stopped.`);
+        collector.stop();
+    });
 }

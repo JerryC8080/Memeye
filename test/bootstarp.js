@@ -1,5 +1,5 @@
 const memeye = require('../');
 
 before(() => {
-    memeye();
+    memeye({log: 'debug'});
 });
