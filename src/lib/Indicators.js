@@ -7,7 +7,7 @@
 const events = require('events');
 const util = require('util');
 
-// Conctructor
+// Constructor
 function Indicators(indicators) {
     events.EventEmitter.call(this);
 
