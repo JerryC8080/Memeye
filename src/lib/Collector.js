@@ -53,8 +53,10 @@ Collector.prototype.start = function () {
             }
         ]
 
-        // sending data to dashboard process with IPC channel.
-        that.dashboard.send(data);
+        // Sending data to dashboard process with IPC channel if dashboard keep on connected.
+        if (this.dashboard.connected) {
+            that.dashboard.send(data);
+        }
 
         if (logger.level >= logger.levelMap['debug']) {
             logger.debug(`Collector heartbeat, data collected. -- size: ${(new Buffer(JSON.stringify(data))).length}, timestamp: ${Date.now()}`);

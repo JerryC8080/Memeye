@@ -8,6 +8,7 @@ describe('#Collector', () => {
     let frequency = 50;
     let dashboard = new events.EventEmitter();
     dashboard.send = (val) => { dashboard.emit('send', val) }
+    dashboard.connected = true;
 
     let collector = new Collector(dashboard, { frequency });
 
@@ -28,7 +29,7 @@ describe('#Collector', () => {
 
         // mutil call start() should be nothing affect;
         collector.start();
-        collector.start();        
+        collector.start();
 
         dashboard.on('send', (val) => {
             should(val).is.Array();
