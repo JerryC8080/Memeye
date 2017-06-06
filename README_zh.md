@@ -78,7 +78,7 @@ Dashboard 会以子进程的形式唤起。他会创建一个 Indicator 实例�
 然后绑定 Indicator 和进程通信管道，以接收父进程发过来的数据。    
 最后再绑定 Indicator 和 socket.io，这样可以在 Indicator 属性变化的时候发送数据给前端。    
 
-##Collector, Indicator, Dashboard 之间的通信
+## Collector, Indicator, Dashboard 之间的通信
 
 ![commication.jpeg](http://obxj5yn80.bkt.clouddn.com/61A039DF1C61FEDE7DA26ED0E860C5D1.jpg)
 
