@@ -80,7 +80,7 @@ Dashboard 会以子进程的形式唤起。他会创建一个 Indicator 实例�
 
 ## Collector, Indicator, Dashboard 之间的通信
 
-![commication.jpeg](http://obxj5yn80.bkt.clouddn.com/61A039DF1C61FEDE7DA26ED0E860C5D1.jpg)
+![commication.jpeg](https://raw.githubusercontent.com/JerryC8080/figure-bed/master/img/20190717214117.jpg)
 
 
 # 测试
