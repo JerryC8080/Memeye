@@ -85,7 +85,7 @@ And then bind the indicator with socket.io, to send messages while indicator att
 
 ## The commication between Collector, Indicator and Dashboard
 
-![commication.jpeg](http://obxj5yn80.bkt.clouddn.com/61A039DF1C61FEDE7DA26ED0E860C5D1.jpg)
+![commication.jpeg](https://raw.githubusercontent.com/JerryC8080/figure-bed/master/img/20190717214117.jpg)
 
 # Test
 Simply run:
